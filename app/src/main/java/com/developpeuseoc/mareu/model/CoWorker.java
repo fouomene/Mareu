@@ -1,6 +1,6 @@
 package com.developpeuseoc.mareu.model;
 
-class CoWorker {
+public class CoWorker {
 
     private String nom;
     private String email;

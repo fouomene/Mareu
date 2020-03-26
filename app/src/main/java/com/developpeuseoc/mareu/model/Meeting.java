@@ -6,13 +6,13 @@ import java.util.List;
 public class Meeting {
 
     private int meetingTime;
-    private String meetignPlace;
+    private String meetingPlace;
     private String topic;
     private List<CoWorker> coWorkerList = new ArrayList<>();
 
     public Meeting(int meetingTime, String meetignPlace, String topic, List<CoWorker> coWorkerList) {
         this.meetingTime = meetingTime;
-        this.meetignPlace = meetignPlace;
+        this.meetingPlace = meetignPlace;
         this.topic = topic;
         this.coWorkerList = coWorkerList;
     }
@@ -26,11 +26,11 @@ public class Meeting {
     }
 
     public String getMeetignPlace() {
-        return meetignPlace;
+        return meetingPlace;
     }
 
     public void setMeetignPlace(String meetignPlace) {
-        this.meetignPlace = meetignPlace;
+        this.meetingPlace = meetignPlace;
     }
 
     public String getTopic() {
