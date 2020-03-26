@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/parentLayout">
+
+    <ImageView
+        android:id="@+id/colorImageView"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/shape_drawable_cercle"/>
+
+    <TextView
+        android:id="@+id/nameMeetingTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="Réunion A"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/colorImageView"
+        app:layout_constraintStart_toEndOf="@+id/colorImageView"
+        app:layout_constraintTop_toTopOf="@+id/colorImageView"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/item_list_delete_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:background="@null"
+        app:layout_constraintBottom_toBottomOf="@+id/colorImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/colorImageView"
+        app:srcCompat="@drawable/ic_delete_24dp" />
+
+    <TextView
+        android:id="@+id/tiretTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" - "
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/nameMeetingTextView"
+        app:layout_constraintStart_toEndOf="@+id/nameMeetingTextView"
+        app:layout_constraintTop_toTopOf="@+id/nameMeetingTextView"
+        app:layout_constraintVertical_bias="0.0"/>
+
+    <TextView
+        android:id="@+id/timeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="14h00"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/tiretTextView"
+        app:layout_constraintStart_toEndOf="@+id/tiretTextView"
+        app:layout_constraintTop_toTopOf="@+id/tiretTextView"
+        app:layout_constraintVertical_bias="0.0"/>
+
+    <TextView
+        android:id="@+id/tiret2TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" - "
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/timeTextView"
+        app:layout_constraintStart_toEndOf="@+id/timeTextView"
+        app:layout_constraintTop_toTopOf="@+id/timeTextView"
+        app:layout_constraintVertical_bias="0.0"/>
+
+    <TextView
+        android:id="@+id/placeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mario"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/tiret2TextView"
+        app:layout_constraintStart_toEndOf="@+id/tiret2TextView"
+        app:layout_constraintTop_toTopOf="@+id/tiret2TextView"
+        app:layout_constraintVertical_bias="0.0"/>
+
+    <TextView
+        android:id="@+id/coWorker_emailTextView"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="2dp"
+        android:maxLines="1"
+        android:text="alexandre@lamzone.com, alex@lamzone.com"
+        android:textColor="#000"
+        app:layout_constraintStart_toEndOf="@+id/colorImageView"
+        app:layout_constraintTop_toBottomOf="@+id/nameMeetingTextView" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
