@@ -1,8 +1,10 @@
-package com.developpeuseoc.mareu;
+package com.developpeuseoc.mareu.ui_meeting_list;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.developpeuseoc.mareu.R;
 
 public class ListMeetingActivity extends AppCompatActivity {
 

@@ -26,4 +26,17 @@ public class FakeApiServiceGenerator {
     static List<CoWorker> generateCoWorkers() {
         return new ArrayList<CoWorker>(DUMMY_COWORKERS);
     }
+
+    public static List<String> DUMMY_PLACES = Arrays.asList(
+            ("Soleil"),
+            ("Mercure"),
+            ("Venus"),
+            ("Terre"),
+            ("Lune"),
+            ("Mars"),
+            ("Jupiter"),
+            ("Saturne"),
+            ("Uranus"),
+            ("Neptune")
+    );
 }

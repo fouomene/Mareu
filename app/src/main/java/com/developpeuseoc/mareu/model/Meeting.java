@@ -1,27 +1,28 @@
 package com.developpeuseoc.mareu.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Meeting {
 
-    private int meetingTime;
+    private Date meetingTime;
     private String meetingPlace;
     private String topic;
     private List<CoWorker> coWorkerList = new ArrayList<>();
 
-    public Meeting(int meetingTime, String meetignPlace, String topic, List<CoWorker> coWorkerList) {
+    public Meeting(Date meetingTime, String meetingPlace, String topic, List<CoWorker> coWorkerList) {
         this.meetingTime = meetingTime;
-        this.meetingPlace = meetignPlace;
+        this.meetingPlace = meetingPlace;
         this.topic = topic;
         this.coWorkerList = coWorkerList;
     }
 
-    public int getMeetingTime() {
+    public Date getMeetingTime() {
         return meetingTime;
     }
 
-    public void setMeetingTime(int meetingTime) {
+    public void setMeetingTime(Date meetingTime) {
         this.meetingTime = meetingTime;
     }
 
@@ -29,8 +30,8 @@ public class Meeting {
         return meetingPlace;
     }
 
-    public void setMeetignPlace(String meetignPlace) {
-        this.meetingPlace = meetignPlace;
+    public void setMeetingPlace(String meetingPlace) {
+        this.meetingPlace = meetingPlace;
     }
 
     public String getTopic() {
