@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Maréu</string>
+    <string name="reunionA">ex: Réunion A</string>
+    <string name="place">Lieu</string>
+    <string name="time">L\'heure</string>
+    <string name="addCoWorkers">Ajouter des collègues</string>
 </resources>
