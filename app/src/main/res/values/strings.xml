@@ -4,4 +4,5 @@
     <string name="place">Lieu</string>
     <string name="time">L\'heure</string>
     <string name="addCoWorkers">Ajouter des collègues</string>
+    <string name="topic">Sujet</string>
 </resources>

@@ -8,6 +8,7 @@
     android:orientation="vertical"
     tools:context=".ui_meeting_list.AddMeetingActivity">
 
+
     <RelativeLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -55,19 +56,16 @@
             android:layout_marginTop="60dp"
             android:layout_marginLeft="25dp"/>
 
-        <com.google.android.material.textfield.TextInputLayout
+        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+            android:id="@+id/placeAutoCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="40dp"
+            android:textColor="#000000"
+            android:textColorHint="#000000"
             android:hint="@string/place"
+            android:layout_margin="40dp"
             android:layout_toRightOf="@id/placeImageView"
-            android:layout_below="@id/nameMeetingCardView">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_below="@id/nameMeetingCardView"/>
 
         <ImageView
             android:id="@+id/timeImageView"
@@ -78,19 +76,18 @@
             android:layout_marginTop="60dp"
             android:layout_marginLeft="25dp"/>
 
-        <com.google.android.material.textfield.TextInputLayout
+
+        <EditText
+            android:id="@+id/timeEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="40dp"
+            android:inputType="time"
             android:hint="@string/time"
-            android:layout_toRightOf="@id/timeImageView"
-            android:layout_below="@id/placeImageView">
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_toRightOf="@+id/timeImageView"
+            android:layout_below="@id/placeAutoCompleteTextView"/>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-        </com.google.android.material.textfield.TextInputLayout>
 
         <ImageView
             android:id="@+id/subjectImageView"
@@ -101,40 +98,60 @@
             android:layout_marginTop="60dp"
             android:layout_marginLeft="25dp"/>
 
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
+            android:id="@+id/topicEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="40dp"
-            android:hint="@string/time"
+            android:hint="@string/topic"
             android:layout_toRightOf="@id/subjectImageView"
-            android:layout_below="@id/timeImageView">
+            android:layout_below="@id/timeImageView" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-        </com.google.android.material.textfield.TextInputLayout>
 
         <ImageView
             android:id="@+id/addImageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_group_black_24dp"
+            android:src="@drawable/ic_group_add_black_24dp"
             android:layout_below="@id/subjectImageView"
             android:layout_marginTop="60dp"
             android:layout_marginLeft="25dp"/>
 
         <Button
+            android:id="@+id/addCoWorkersButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/addCoWorkers"
             android:layout_below="@id/subjectImageView"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="40dp"
             android:layout_toRightOf="@id/addImageView"
-            android:layout_margin="40dp"/>
+            android:text="@string/addCoWorkers" />
+
+        <ImageView
+            android:id="@+id/listCoWorkersImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_group_black_24dp"
+            android:layout_below="@id/addImageView"
+            android:layout_marginTop="60dp"
+            android:layout_marginLeft="25dp"/>
+
+        <ListView
+            android:id="@+id/coWorkersListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/addImageView"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="60dp"
+            android:layout_toRightOf="@id/listCoWorkersImageView" />
+
 
     </RelativeLayout>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_meeting"
+        android:id="@+id/add_list_meeting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_check_white_24dp"
