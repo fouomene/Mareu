@@ -2,20 +2,30 @@ package com.developpeuseoc.mareu.model;
 
 public class CoWorker {
 
-    private String nom;
+    private String avatarUrl;
+    private String name;
     private String email;
 
-    public CoWorker(String nom, String email) {
-        this.nom = nom;
+    public CoWorker(String avatarUrl, String name, String email) {
+        this.avatarUrl = avatarUrl;
+        this.name = name;
         this.email = email;
     }
 
-    public String getNom() {
-        return nom;
+    public String getAvatarUrl() {
+        return avatarUrl;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String nom) {
+        this.name = name;
     }
 
     public String getEmail() {
