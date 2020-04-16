@@ -5,6 +5,7 @@ public class CoWorker {
     private String avatarUrl;
     private String name;
     private String email;
+    private boolean isSelected;
 
     public CoWorker(String avatarUrl, String name, String email) {
         this.avatarUrl = avatarUrl;
@@ -34,5 +35,13 @@ public class CoWorker {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
     }
 }

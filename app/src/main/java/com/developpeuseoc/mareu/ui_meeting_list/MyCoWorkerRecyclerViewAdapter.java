@@ -1,10 +1,12 @@
 package com.developpeuseoc.mareu.ui_meeting_list;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -17,16 +19,18 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.developpeuseoc.mareu.R;
 import com.developpeuseoc.mareu.model.CoWorker;
+import com.developpeuseoc.mareu.service.ApiService;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MyCoWorkerRecyclerViewAdapter extends RecyclerView.Adapter<MyCoWorkerRecyclerViewAdapter.ViewHolder>{
+public class MyCoWorkerRecyclerViewAdapter extends RecyclerView.Adapter<MyCoWorkerRecyclerViewAdapter.ViewHolder> {
 
     private final List<CoWorker> mCoWorkers;
     private Context mContext;
+    ApiService mApiService;
 
     public MyCoWorkerRecyclerViewAdapter(Context context, List<CoWorker> items) {
         mContext = context;
@@ -50,6 +54,13 @@ public class MyCoWorkerRecyclerViewAdapter extends RecyclerView.Adapter<MyCoWork
                 .apply(RequestOptions.circleCropTransform())
                 .into(holder.mCoWorkerAvatar);
 
+        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                coWorker.setSelected(!coWorker.isSelected());
+                holder.itemView.setBackgroundColor(coWorker.isSelected() ? Color.CYAN : Color.WHITE);
+            }
+        });
     }
 
     @Override
@@ -57,15 +68,13 @@ public class MyCoWorkerRecyclerViewAdapter extends RecyclerView.Adapter<MyCoWork
         return mCoWorkers.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder{
         @BindView(R.id.item_list_avatar)
         public ImageView mCoWorkerAvatar;
         @BindView(R.id.item_list_name)
         public TextView mCoWorkerName;
         @BindView(R.id.item_list_email)
         public TextView mCoWorkerEmail;
-        @BindView(R.id.checkBox)
-        public CheckBox checkBox;
         @BindView(R.id.parentLayout_fragment_coworkers)
         public RelativeLayout parentLayout;
 

@@ -15,10 +15,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.developpeuseoc.mareu.DI.DI;
 import com.developpeuseoc.mareu.R;
+import com.developpeuseoc.mareu.model.CoWorker;
+import com.developpeuseoc.mareu.service.ApiService;
 import com.developpeuseoc.mareu.service.FakeApiServiceGenerator;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,13 +48,17 @@ public class AddMeetingActivity extends AppCompatActivity {
     @BindView(R.id.coWorkersListView)
     ListView coWorkersListView;
 
+    List<CoWorker> coWorkerList_add = new ArrayList<>();
+
     private Context mContext;
+    ApiService mApiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_meeting);
         ButterKnife.bind(this);
+        mApiService = DI.getNeighbourApiService();
 
         String nameMeeting = nameMeetingEditText.getText().toString();
 
@@ -68,6 +77,25 @@ public class AddMeetingActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+//        Intent intent = getIntent();
+//        String coworkers = intent.getStringExtra("coworkers");
+//
+//        if(coworkers.equals("coworkers")) {
+//            for (Integer i : mApiService.getPositionsCoWorkers()) {
+//                int position = mApiService.getPositionsCoWorkers().get(i);
+//                coWorkerList_add.add(mApiService.getCoWorkers().get(position));
+//            }
+//            //afficher les coworkers dans le listView
+//            ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, coWorkerList_add);
+//            coWorkersListView.setAdapter(arrayAdapter);
+//        }
+
+        //Déclarer un meeting et faire un clear sur la list position des qu'on clique sur le bouton enregistrer
+
+
+
     }
 
     /**

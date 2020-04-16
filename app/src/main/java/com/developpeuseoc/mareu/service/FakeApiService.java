@@ -10,6 +10,7 @@ public class FakeApiService implements ApiService{
 
     private List<CoWorker> coWorkers = FakeApiServiceGenerator.generateCoWorkers();
     private List<Meeting> meetingList = new ArrayList<>();
+    private List<CoWorker> coWorkersToAdd = new ArrayList<>();
 
     /**
      * Return a list of {@link CoWorker}
@@ -18,6 +19,26 @@ public class FakeApiService implements ApiService{
     @Override
     public List<CoWorker> getCoWorkers() {
         return coWorkers;
+    }
+
+    @Override
+    public List<CoWorker> getCoWorkersToAdd() {
+        return coWorkersToAdd;
+    }
+
+    @Override
+    public void addCoWorkersToAdd(CoWorker coWorker) {
+        coWorkersToAdd.add(coWorker);
+    }
+
+    @Override
+    public void deleteCoWorkersToAdd(CoWorker coWorker) {
+        coWorkersToAdd.remove(coWorker);
+    }
+
+    @Override
+    public void initCoWorkersToAdd() {
+        coWorkersToAdd.clear();
     }
 
 }
