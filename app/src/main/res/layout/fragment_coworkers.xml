@@ -3,20 +3,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:clickable="true"
+    android:padding="10dp"
     android:id="@+id/parentLayout_fragment_coworkers">
 
 
-    <ImageView
-        android:id="@+id/item_list_avatar"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/item_list_add_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FF3333"
+        android:src="@drawable/ic_add_white_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,23 +24,21 @@
         android:id="@+id/item_list_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Alex"
+        android:text="Alexandre"
         android:textStyle="bold"
         android:textSize="20dp"
-        android:layout_toRightOf="@id/item_list_avatar"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="30dp"/>
+        android:layout_toRightOf="@id/item_list_add_button"
+        android:layout_marginLeft="15dp"/>
 
     <TextView
         android:id="@+id/item_list_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="alex@lamzone.com"
+        android:text="alexandre@lamzone.com"
         android:textStyle="bold"
         android:textSize="15dp"
-        android:layout_toRightOf="@id/item_list_avatar"
-        android:layout_below="@id/item_list_name"
-        android:layout_marginTop="02dp"
-        android:layout_marginLeft="30dp" />
+        android:layout_toRightOf="@id/item_list_add_button"
+        android:layout_alignBottom="@id/item_list_add_button"
+        android:layout_marginLeft="16dp"/>
 
 </RelativeLayout>
