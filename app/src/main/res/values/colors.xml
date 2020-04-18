@@ -3,4 +3,5 @@
     <color name="colorPrimary">#3498DB</color>
     <color name="colorPrimaryDark">#21618C</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="chipIconTint">#878C8B</color>
 </resources>

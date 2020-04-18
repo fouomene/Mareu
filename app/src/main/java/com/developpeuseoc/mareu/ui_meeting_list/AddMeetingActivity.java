@@ -20,6 +20,8 @@ import com.developpeuseoc.mareu.R;
 import com.developpeuseoc.mareu.model.CoWorker;
 import com.developpeuseoc.mareu.service.ApiService;
 import com.developpeuseoc.mareu.service.FakeApiServiceGenerator;
+import com.hootsuite.nachos.NachoTextView;
+import com.hootsuite.nachos.terminator.ChipTerminatorHandler;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -42,11 +44,8 @@ public class AddMeetingActivity extends AppCompatActivity {
     @BindView(R.id.topicEditText)
     EditText topicEditText;
 
-    @BindView(R.id.addCoWorkersButton)
-    Button addCoWorkersButton;
-
-    @BindView(R.id.coWorkersListView)
-    ListView coWorkersListView;
+    @BindView(R.id.email_nacho_text_view)
+    NachoTextView emailNachoTextView;
 
     List<CoWorker> coWorkerList_add = new ArrayList<>();
 
@@ -58,7 +57,7 @@ public class AddMeetingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_meeting);
         ButterKnife.bind(this);
-        mApiService = DI.getNeighbourApiService();
+        mApiService = DI.getCoWorkersApiService();
 
         String nameMeeting = nameMeetingEditText.getText().toString();
 
@@ -70,32 +69,7 @@ public class AddMeetingActivity extends AppCompatActivity {
         String timeMeeting = timeEditText.getText().toString();
         String topicMeeting = topicEditText.getText().toString();
 
-        addCoWorkersButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ListCoWorkersActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
-//        Intent intent = getIntent();
-//        String coworkers = intent.getStringExtra("coworkers");
-//
-//        if(coworkers.equals("coworkers")) {
-//            for (Integer i : mApiService.getPositionsCoWorkers()) {
-//                int position = mApiService.getPositionsCoWorkers().get(i);
-//                coWorkerList_add.add(mApiService.getCoWorkers().get(position));
-//            }
-//            //afficher les coworkers dans le listView
-//            ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, coWorkerList_add);
-//            coWorkersListView.setAdapter(arrayAdapter);
-//        }
-
-        //Déclarer un meeting et faire un clear sur la list position des qu'on clique sur le bouton enregistrer
-
-
-
+        emailNachoTextView.addChipTerminator('\n', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_ALL);
     }
 
     /**
