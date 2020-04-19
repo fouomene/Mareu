@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#21618C</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="chipIconTint">#878C8B</color>
+    <color name="mtrl_textinput_default_box_stroke_color">#B3B6B7</color>
+
 </resources>

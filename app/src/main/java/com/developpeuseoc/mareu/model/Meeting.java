@@ -9,9 +9,9 @@ public class Meeting {
     private Date meetingTime;
     private String meetingPlace;
     private String topic;
-    private List<CoWorker> coWorkerList = new ArrayList<>();
+    private List<String> coWorkerList = new ArrayList<>();
 
-    public Meeting(Date meetingTime, String meetingPlace, String topic, List<CoWorker> coWorkerList) {
+    public Meeting(Date meetingTime, String meetingPlace, String topic, List<String> coWorkerList) {
         this.meetingTime = meetingTime;
         this.meetingPlace = meetingPlace;
         this.topic = topic;
@@ -42,11 +42,11 @@ public class Meeting {
         this.topic = topic;
     }
 
-    public List<CoWorker> getCoWorkerList() {
+    public List<String> getCoWorkerList() {
         return coWorkerList;
     }
 
-    public void setCoWorkerList(List<CoWorker> coWorkerList) {
+    public void setCoWorkerList(List<String> coWorkerList) {
         this.coWorkerList = coWorkerList;
     }
 }
