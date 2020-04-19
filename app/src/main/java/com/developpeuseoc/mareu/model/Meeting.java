@@ -1,32 +1,52 @@
 package com.developpeuseoc.mareu.model;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 public class Meeting {
 
-    private Date meetingTime;
+    private int id;
+    private Calendar hour;
+    private Calendar minute;
     private String meetingPlace;
     private String topic;
     private List<String> coWorkerList = new ArrayList<>();
 
-    public Meeting(Date meetingTime, String meetingPlace, String topic, List<String> coWorkerList) {
-        this.meetingTime = meetingTime;
+    public Meeting(int id, Calendar hour, Calendar minute, String meetingPlace, String topic, List<String> coWorkerList) {
+        this.id = id;
+        this.hour = hour;
+        this.minute = minute;
         this.meetingPlace = meetingPlace;
         this.topic = topic;
         this.coWorkerList = coWorkerList;
     }
 
-    public Date getMeetingTime() {
-        return meetingTime;
+    public int getId() {
+        return id;
     }
 
-    public void setMeetingTime(Date meetingTime) {
-        this.meetingTime = meetingTime;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getMeetignPlace() {
+    public Calendar getHour() {
+        return hour;
+    }
+
+    public void setHour(Calendar hour) {
+        this.hour = hour;
+    }
+
+    public Calendar getMinute() {
+        return minute;
+    }
+
+    public void setMinute(Calendar minute) {
+        this.minute = minute;
+    }
+
+    public String getMeetingPlace() {
         return meetingPlace;
     }
 
