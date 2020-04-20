@@ -7,13 +7,13 @@ import java.util.List;
 public class Meeting {
 
     private int id;
-    private Calendar hour;
-    private Calendar minute;
+    private int hour;
+    private int minute;
     private String meetingPlace;
     private String topic;
     private List<String> coWorkerList = new ArrayList<>();
 
-    public Meeting(int id, Calendar hour, Calendar minute, String meetingPlace, String topic, List<String> coWorkerList) {
+    public Meeting(int id, int hour, int minute, String meetingPlace, String topic, List<String> coWorkerList) {
         this.id = id;
         this.hour = hour;
         this.minute = minute;
@@ -30,19 +30,19 @@ public class Meeting {
         this.id = id;
     }
 
-    public Calendar getHour() {
+    public int getHour() {
         return hour;
     }
 
-    public void setHour(Calendar hour) {
+    public void setHour(int hour) {
         this.hour = hour;
     }
 
-    public Calendar getMinute() {
+    public int getMinute() {
         return minute;
     }
 
-    public void setMinute(Calendar minute) {
+    public void setMinute(int minute) {
         this.minute = minute;
     }
 

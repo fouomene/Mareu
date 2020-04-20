@@ -14,14 +14,19 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TimePicker;
 
+import com.developpeuseoc.mareu.DI.DI;
 import com.developpeuseoc.mareu.R;
+import com.developpeuseoc.mareu.model.Meeting;
+import com.developpeuseoc.mareu.service.ApiService;
 import com.developpeuseoc.mareu.service.FakeApiService;
 import com.developpeuseoc.mareu.service.FakeApiServiceGenerator;
 import com.google.android.material.textfield.TextInputEditText;
 import com.hootsuite.nachos.NachoTextView;
 import com.hootsuite.nachos.terminator.ChipTerminatorHandler;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import static java.security.AccessController.getContext;
 
@@ -33,11 +38,16 @@ public class AddMeetingActivity extends AppCompatActivity {
     TextInputEditText topicEditText;
     NachoTextView emailNachoTextView;
     Button addNewMeetingButton;
+    ApiService mApiService;
+
+    int timeHour = 0;
+    int timeMinute = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_meeting);
+        mApiService = DI.getNewInstanceApiService();
 
         //FindViewByID
         nameMeetingEditText = findViewById(R.id.nameMeetingEditText);
@@ -46,8 +56,6 @@ public class AddMeetingActivity extends AppCompatActivity {
         topicEditText = findViewById(R.id.topicEditText);
         emailNachoTextView = findViewById(R.id.email_nacho_text_view);
         addNewMeetingButton = findViewById(R.id.addNewMeetingButton);
-
-        //New meeting
 
         //AutoCompleteTextView
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -70,11 +78,29 @@ public class AddMeetingActivity extends AppCompatActivity {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                         timeEditText.setText( selectedHour + ":" + selectedMinute);
+                        timeHour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+                        timeMinute = mcurrentTime.get(Calendar.MINUTE);
                     }
                 }, hour, minute, true);//Yes 24 hour time
                 mTimePicker.setTitle("Select Time");
                 mTimePicker.show();
 
+            }
+        });
+
+        addNewMeetingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int id = mApiService.getMeetingList().size() + 1;
+                String meetingPlace = autoCompleteTextView.getText().toString();
+                String meetingTopic = topicEditText.getText().toString();
+                List<String> coWorkerList = emailNachoTextView.getChipAndTokenValues();
+
+                Meeting newMeeting = new Meeting(id, timeHour, timeMinute, meetingPlace, meetingTopic, coWorkerList);
+                mApiService.addMeetingList(newMeeting);
+
+                Intent intent = new Intent(getApplicationContext(), ListMeetingActivity.class);
+                startActivity(intent);
             }
         });
     }

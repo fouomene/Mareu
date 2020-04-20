@@ -7,6 +7,15 @@ import java.util.List;
 
 public class FakeApiService implements ApiService{
 
-    //private List<Meeting> meetingList = new ArrayList<>();
+    private List<Meeting> meetingList = new ArrayList<>();
 
+    @Override
+    public List<Meeting> getMeetingList() {
+        return meetingList;
+    }
+
+    @Override
+    public void addMeetingList(Meeting meeting) {
+        meetingList.add(meeting);
+    }
 }
