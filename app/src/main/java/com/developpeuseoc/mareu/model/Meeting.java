@@ -9,12 +9,14 @@ public class Meeting {
     private int id;
     private int hour;
     private int minute;
+    private String meetingName;
     private String meetingPlace;
     private String topic;
     private List<String> coWorkerList = new ArrayList<>();
 
-    public Meeting(int id, int hour, int minute, String meetingPlace, String topic, List<String> coWorkerList) {
+    public Meeting(int id, String meetingName, int hour, int minute, String meetingPlace, String topic, List<String> coWorkerList) {
         this.id = id;
+        this.meetingName = meetingName;
         this.hour = hour;
         this.minute = minute;
         this.meetingPlace = meetingPlace;
@@ -28,6 +30,14 @@ public class Meeting {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getMeetingName() {
+        return meetingName;
+    }
+
+    public void setMeetingName(String meetingName) {
+        this.meetingName = meetingName;
     }
 
     public int getHour() {

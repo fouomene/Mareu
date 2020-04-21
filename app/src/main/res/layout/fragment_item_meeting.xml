@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:id="@+id/itemList_parentLayout">
+
+    <ImageView
+        android:id="@+id/colorImageView"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/shape_drawable_cercle"
+        android:layout_centerVertical="true"/>
+
+    <TextView
+        android:id="@+id/detailMeetingTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Réunion A - 14h00 - Peach"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="#000"
+        android:layout_toRightOf="@id/colorImageView"
+        android:layout_marginLeft="15dp"/>
+
+    <ImageButton
+        android:id="@+id/item_list_delete_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        app:srcCompat="@drawable/ic_delete_24dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"/>
+
+
+    <TextView
+        android:id="@+id/coWorker_emailTextView"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:text="alexandre@lamzone.com, alex@lamzone.com"
+        android:textColor="#000"
+        android:layout_below="@id/detailMeetingTextView"
+        android:layout_toRightOf="@id/colorImageView"
+        android:layout_marginLeft="15dp"/>
+
+</RelativeLayout>

@@ -2,28 +2,34 @@ package com.developpeuseoc.mareu.ui_meeting_list;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import com.developpeuseoc.mareu.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import android.view.View;
 
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+import com.developpeuseoc.mareu.databinding.ActivityListMeetingBinding;
 
 
 public class ListMeetingActivity extends AppCompatActivity {
 
+    ActivityListMeetingBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_meeting);
-        ButterKnife.bind(this);
+
+        binding = ActivityListMeetingBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
+
+        binding.addMeetingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AddMeetingActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
-
-    @OnClick(R.id.add_meeting)
-    void addMeeting() {
-        AddMeetingActivity.navigate(this);
-    }
 
 }

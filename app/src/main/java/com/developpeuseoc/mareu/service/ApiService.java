@@ -9,5 +9,5 @@ public interface ApiService {
 
     public List<Meeting> getMeetingList();
     public void addMeetingList(Meeting meeting);
-
+    public void deleteMeeting(Meeting meeting);
 }
