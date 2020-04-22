@@ -8,6 +8,14 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/meetingListRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        tools:listitem="@layout/fragment_item_meeting"/>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addMeetingButton"
         android:layout_width="wrap_content"

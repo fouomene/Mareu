@@ -1,43 +1,29 @@
 package com.developpeuseoc.mareu.ui_meeting_list;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.FragmentActivity;
 
-import android.app.Activity;
 import android.app.TimePickerDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.TimePicker;
 
 import com.developpeuseoc.mareu.DI.DI;
-import com.developpeuseoc.mareu.R;
 import com.developpeuseoc.mareu.databinding.ActivityAddMeetingBinding;
 import com.developpeuseoc.mareu.model.Meeting;
 import com.developpeuseoc.mareu.service.ApiService;
-import com.developpeuseoc.mareu.service.FakeApiService;
 import com.developpeuseoc.mareu.service.FakeApiServiceGenerator;
-import com.google.android.material.textfield.TextInputEditText;
-import com.hootsuite.nachos.NachoTextView;
 import com.hootsuite.nachos.terminator.ChipTerminatorHandler;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import static java.security.AccessController.getContext;
 
 public class AddMeetingActivity extends AppCompatActivity {
 
     ActivityAddMeetingBinding binding;
-
     ApiService mApiService;
-
     int timeHour = 0;
     int timeMinute = 0;
 
@@ -52,7 +38,7 @@ public class AddMeetingActivity extends AppCompatActivity {
         mApiService = DI.getNewInstanceApiService();
 
 
-        //AutoCompleteTextView
+        //Place: AutoCompleteTextView
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, FakeApiServiceGenerator.DUMMY_PLACES);
         binding.autoCompleteTextView.setAdapter(adapter);
@@ -83,6 +69,7 @@ public class AddMeetingActivity extends AppCompatActivity {
             }
         });
 
+        //Button to add new meeting in the list
         binding.addNewMeetingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,15 +77,28 @@ public class AddMeetingActivity extends AppCompatActivity {
                 String meetingName = binding.nameMeetingEditText.getText().toString();
                 String meetingPlace = binding.autoCompleteTextView.getText().toString();
                 String meetingTopic = binding.topicEditText.getText().toString();
-                List<String> coWorkerList = binding.emailNachoTextView.getChipAndTokenValues();
+                List<String> coWorkerList = binding.emailNachoTextView.getChipValues();
 
-                Meeting newMeeting = new Meeting(id, meetingName,timeHour, timeMinute, meetingPlace, meetingTopic, coWorkerList);
+                String emails = listToString(coWorkerList);
+
+                Meeting newMeeting = new Meeting(id, meetingName,timeHour, timeMinute, meetingPlace, meetingTopic, emails);
                 mApiService.addMeetingList(newMeeting);
 
                 Intent intent = new Intent(getApplicationContext(), ListMeetingActivity.class);
                 startActivity(intent);
             }
         });
+    }
+
+    public String listToString(List<String> list){
+        String emails = "";
+
+        for (String s : list)
+        {
+            emails += s + "\t";
+        }
+
+        return emails;
     }
 
 }

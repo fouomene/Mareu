@@ -12,16 +12,16 @@ public class Meeting {
     private String meetingName;
     private String meetingPlace;
     private String topic;
-    private List<String> coWorkerList = new ArrayList<>();
+    private String coWorkers;
 
-    public Meeting(int id, String meetingName, int hour, int minute, String meetingPlace, String topic, List<String> coWorkerList) {
+    public Meeting(int id, String meetingName, int hour, int minute, String meetingPlace, String topic, String coWorkers) {
         this.id = id;
         this.meetingName = meetingName;
         this.hour = hour;
         this.minute = minute;
         this.meetingPlace = meetingPlace;
         this.topic = topic;
-        this.coWorkerList = coWorkerList;
+        this.coWorkers = coWorkers;
     }
 
     public int getId() {
@@ -72,11 +72,11 @@ public class Meeting {
         this.topic = topic;
     }
 
-    public List<String> getCoWorkerList() {
-        return coWorkerList;
+    public String getCoWorkers() {
+        return coWorkers;
     }
 
-    public void setCoWorkerList(List<String> coWorkerList) {
-        this.coWorkerList = coWorkerList;
+    public void setCoWorkers(String coWorkers) {
+        this.coWorkers = coWorkers;
     }
 }

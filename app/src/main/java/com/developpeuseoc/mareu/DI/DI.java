@@ -14,7 +14,7 @@ public class DI {
      * Get an instance on @{@link ApiService}
      * @return
      */
-    public static ApiService getCoWorkersApiService() {
+    public static ApiService getMeetingsApiService() {
         return service;
     }
 
