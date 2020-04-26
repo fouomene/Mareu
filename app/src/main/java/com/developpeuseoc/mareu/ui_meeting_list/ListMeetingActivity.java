@@ -1,23 +1,38 @@
 package com.developpeuseoc.mareu.ui_meeting_list;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
+import android.widget.Toast;
 
 import com.developpeuseoc.mareu.DI.DI;
+import com.developpeuseoc.mareu.R;
 import com.developpeuseoc.mareu.databinding.ActivityListMeetingBinding;
+import com.developpeuseoc.mareu.events.DeleteMeetingEvent;
 import com.developpeuseoc.mareu.model.Meeting;
 import com.developpeuseoc.mareu.service.ApiService;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ListMeetingActivity extends AppCompatActivity {
 
-    ActivityListMeetingBinding binding;
-    ApiService mApiService;
+    private ActivityListMeetingBinding binding;
+    private List<Meeting> mMeetings;
+    private ApiService mApiService;
+    private RecyclerView rv;
+    private MyMeetingRecyclerViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +43,15 @@ public class ListMeetingActivity extends AppCompatActivity {
         setContentView(view);
 
         mApiService = DI.getNewInstanceApiService();
-        mApiService.addMeetingList(new Meeting(1, "Réunion B", 12, 30, "Saturne", "I do'nt know", "Emails"));
 
-        RecyclerView rv = binding.meetingListRecyclerView;
+        rv = binding.meetingListRecyclerView;
+
+        //Meetre un jeu de données dans le package service
+
+        mMeetings = mApiService.getMeetingList();
+        adapter = new MyMeetingRecyclerViewAdapter(getApplicationContext(), mMeetings);
         rv.setLayoutManager(new LinearLayoutManager(this));
-        rv.setAdapter(new MyMeetingRecyclerViewAdapter(mApiService.getMeetingList()));
+        rv.setAdapter(adapter);
 
         binding.addMeetingButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +61,51 @@ public class ListMeetingActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    /**
+     * Init the List of meetings
+     */
+    private void initList() {
+        mMeetings = mApiService.getMeetingList();
+        Toast.makeText(this, "Taille de la list" + mMeetings.size(), Toast.LENGTH_SHORT).show();
+        adapter.setListMeetings(mMeetings);
+        //rv.setAdapter(new MyMeetingRecyclerViewAdapter(getApplicationContext(), mMeetings));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initList();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    /**
+     * Fired if the user clicks on a delete button
+     * @param event
+     */
+    @Subscribe
+    public void onDeleteMeeting(DeleteMeetingEvent event) {
+        mApiService.deleteMeeting(event.meeting);
+        initList();
     }
 
 

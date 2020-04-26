@@ -18,18 +18,22 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.developpeuseoc.mareu.R;
 import com.developpeuseoc.mareu.databinding.FragmentItemMeetingBinding;
+import com.developpeuseoc.mareu.events.DeleteMeetingEvent;
 import com.developpeuseoc.mareu.model.Meeting;
 import com.developpeuseoc.mareu.service.FakeApiServiceGenerator;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MyMeetingRecyclerViewAdapter extends RecyclerView.Adapter<MyMeetingRecyclerViewAdapter.ViewHolder> {
 
-    private final List<Meeting> mMeetings;
+    private List<Meeting> mMeetings;
+    private Context context;
 
-    public MyMeetingRecyclerViewAdapter(List<Meeting> items) {
+    public MyMeetingRecyclerViewAdapter(Context context, List<Meeting> items) {
+        this.context = context;
         mMeetings = items;
     }
 
@@ -57,7 +61,12 @@ public class MyMeetingRecyclerViewAdapter extends RecyclerView.Adapter<MyMeeting
         myGrad.setColor(Color.parseColor(FakeApiServiceGenerator.DUMMY_COLOR.get(positionPlace)));
 
         //deleteButton
-        //TODO
+        holder.deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EventBus.getDefault().post(new DeleteMeetingEvent(meeting));
+            }
+        });
 
     }
 
@@ -65,6 +74,16 @@ public class MyMeetingRecyclerViewAdapter extends RecyclerView.Adapter<MyMeeting
     public int getItemCount() {
         return mMeetings.size();
     }
+
+    /**
+    * Lorsque les données changent, cette méthode met à jour la liste des réunions  et informe
+    * l'adaptateur d'utiliser les nouvelles valeurs qu'il contient.
+     */
+    public void setListMeetings(List<Meeting> listMeetings) {
+        this.mMeetings = listMeetings;
+        notifyDataSetChanged();
+    }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 

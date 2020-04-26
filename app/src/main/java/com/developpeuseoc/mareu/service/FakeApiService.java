@@ -9,6 +9,7 @@ public class FakeApiService implements ApiService{
 
     private List<Meeting> meetingList = new ArrayList<>();
 
+
     @Override
     public List<Meeting> getMeetingList() {
         return meetingList;

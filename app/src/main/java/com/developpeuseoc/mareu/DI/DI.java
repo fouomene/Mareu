@@ -23,6 +23,10 @@ public class DI {
      * @return
      */
     public static ApiService getNewInstanceApiService() {
-        return new FakeApiService();
+        if(service == null){
+            return new FakeApiService();
+        } else {
+            return service;
+        }
     }
 }
