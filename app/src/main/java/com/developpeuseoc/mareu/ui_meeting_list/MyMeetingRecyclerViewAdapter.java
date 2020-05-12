@@ -53,7 +53,7 @@ public class MyMeetingRecyclerViewAdapter extends RecyclerView.Adapter<MyMeeting
         holder.detailMeetingTextView.setText(detail);
 
         //email
-        holder.emailTextView.setText(meeting.getCoWorkers());
+        holder.emailTextView.setText(meeting.getCoWorkers().substring(0, 30) + "...");
 
         //colorImageView
         int positionPlace =  FakeApiServiceGenerator.DUMMY_PLACES.indexOf(meeting.getMeetingPlace());

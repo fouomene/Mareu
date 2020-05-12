@@ -2,6 +2,7 @@ package com.developpeuseoc.mareu.ui_meeting_list;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,7 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ListMeetingActivity extends AppCompatActivity {
+public class ListMeetingActivity extends AppCompatActivity implements PlaceDialog.NoticeDialogListener, TimeDialog.NoticeDialogListener {
 
     private ActivityListMeetingBinding binding;
     private List<Meeting> mMeetings;
@@ -47,8 +48,6 @@ public class ListMeetingActivity extends AppCompatActivity {
         mApiService = DI.getNewInstanceApiService();
 
         rv = binding.meetingListRecyclerView;
-
-        //Meetre un jeu de données dans le package service
 
         mMeetings = mApiService.getMeetingList();
         adapter = new MyMeetingRecyclerViewAdapter(getApplicationContext(), mMeetings);
@@ -76,11 +75,15 @@ public class ListMeetingActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.placeFilterSubItem:
-                //TODO
+                openPlaceDialog();
                 return true;
 
             case R.id.timeFilterSubItem:
-                //TODO
+                openTimeDialog();
+                return true;
+
+            case R.id.listSubItem:
+                initList();
                 return true;
 
             default:
@@ -88,14 +91,32 @@ public class ListMeetingActivity extends AppCompatActivity {
         }
     }
 
+    private void openPlaceDialog() {
+        PlaceDialog placeDialog = new PlaceDialog();
+        placeDialog.show(getSupportFragmentManager(), "place dialog");
+    }
+
+    private void openTimeDialog() {
+        TimeDialog timeDialog = new TimeDialog();
+        timeDialog.show(getSupportFragmentManager(), "time dialog");
+    }
+
+    @Override
+    public void onPlaceDialogPositiveClick(List<Meeting> meetingsFilterList) {
+        adapter.setListMeetings(meetingsFilterList);
+    }
+
+    @Override
+    public void onTimeDialogPositiveClick(List<Meeting> meetingsFilterList) {
+        adapter.setListMeetings(meetingsFilterList);
+    }
+
     /**
      * Init the List of meetings
      */
     private void initList() {
         mMeetings = mApiService.getMeetingList();
-        Toast.makeText(this, "Taille de la list" + mMeetings.size(), Toast.LENGTH_SHORT).show();
         adapter.setListMeetings(mMeetings);
-        //rv.setAdapter(new MyMeetingRecyclerViewAdapter(getApplicationContext(), mMeetings));
     }
 
     @Override
@@ -125,6 +146,4 @@ public class ListMeetingActivity extends AppCompatActivity {
         mApiService.deleteMeeting(event.meeting);
         initList();
     }
-
-
 }

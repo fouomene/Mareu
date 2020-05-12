@@ -17,6 +17,10 @@
                 android:id="@+id/timeFilterSubItem"
                 android:title="@string/select_time" />
 
+            <item
+                android:id="@+id/listSubItem"
+                android:title="Afficher la liste" />
+
         </menu>
 
     </item>
