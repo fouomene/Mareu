@@ -37,13 +37,14 @@
 
     <TextView
         android:id="@+id/coWorker_emailTextView"
-        android:layout_width="250dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/detailMeetingTextView"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@id/colorImageView"
+        android:layout_toLeftOf="@id/item_list_delete_button"
         android:maxLines="1"
         android:text="alexandre@lamzone.com, alex@lamzone.com"
-        android:textColor="#000"
-        android:layout_below="@id/detailMeetingTextView"
-        android:layout_toRightOf="@id/colorImageView"
-        android:layout_marginLeft="15dp"/>
+        android:textColor="#000" />
 
 </RelativeLayout>

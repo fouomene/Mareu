@@ -5,9 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.developpeuseoc.mareu.DI.DI;
 import com.developpeuseoc.mareu.databinding.ActivityAddMeetingBinding;
@@ -37,7 +41,6 @@ public class AddMeetingActivity extends AppCompatActivity {
         setContentView(view);
 
         mApiService = DI.getNewInstanceApiService();
-
 
         //Place: AutoCompleteTextView
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -69,23 +72,31 @@ public class AddMeetingActivity extends AppCompatActivity {
             }
         });
 
-        //Button to add new meeting in the list
         binding.addNewMeetingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int id = mApiService.getMeetingList().size() + 1;
-                String meetingName = binding.nameMeetingEditText.getText().toString();
-                String meetingPlace = binding.autoCompleteTextView.getText().toString();
-                String meetingTopic = binding.topicEditText.getText().toString();
-                String emails = chipsToString();
+                if(binding.nameMeetingEditText.getText().toString().length() == 00 || binding.autoCompleteTextView.getText().toString().length() == 0 || binding.timeEditText.getText().toString().length() == 0 || binding.topicEditText.getText().toString().length() == 0 || binding.emailNachoTextView.getText().toString().length() == 00){
 
-                Meeting newMeeting = new Meeting(id, meetingName,timeHour, timeMinute, meetingPlace, meetingTopic, emails);
-                mApiService.addMeetingList(newMeeting);
+                    Toast.makeText(getApplicationContext(), "Il faut remplir tout les champs", Toast.LENGTH_SHORT).show();
 
-                finish();
+                } else {
+                    Meeting newMeeting = new Meeting(
+                            mApiService.getMeetingList().size() + 1,
+                            binding.nameMeetingEditText.getText().toString(),
+                            timeHour,
+                            timeMinute,
+                            binding.autoCompleteTextView.getText().toString(),
+                            binding.topicEditText.getText().toString(),
+                            chipsToString());
+
+                    mApiService.addMeetingList(newMeeting);
+                    finish();
+                }
             }
         });
+
     }
+
 
     public String chipsToString() {
         String text = "";

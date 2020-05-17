@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 
 import androidx.appcompat.app.AppCompatDialogFragment;
@@ -16,6 +17,7 @@ import com.developpeuseoc.mareu.DI.DI;
 import com.developpeuseoc.mareu.R;
 import com.developpeuseoc.mareu.model.Meeting;
 import com.developpeuseoc.mareu.service.ApiService;
+import com.developpeuseoc.mareu.service.FakeApiServiceGenerator;
 
 import java.util.List;
 
@@ -54,6 +56,9 @@ public class PlaceDialog extends AppCompatDialogFragment {
                 });
 
         dialog_place_AutoCompleteTextView = view.findViewById(R.id.dialog_place_AutoCompleteTextView);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
+                android.R.layout.simple_dropdown_item_1line, FakeApiServiceGenerator.DUMMY_PLACES);
+        dialog_place_AutoCompleteTextView.setAdapter(adapter);
 
         return builder.create();
     }

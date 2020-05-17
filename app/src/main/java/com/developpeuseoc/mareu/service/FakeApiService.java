@@ -20,11 +20,6 @@ public class FakeApiService implements ApiService{
         return meetingList;
     }
 
-    @Override
-    public List<Meeting> getFilterMeetingList() {
-        return filterMeetingList;
-    }
-
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public List<Meeting> filterPlaceMeetingList(String place) {

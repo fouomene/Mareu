@@ -9,12 +9,12 @@ import java.util.List;
 public class FakeApiServiceGenerator {
 
     public static List<Meeting> DUMMY_MEETINGS = Arrays.asList(
-            new Meeting(0, "Réunion A", 10, 00, "Saturne", "L'application MaRéu", "alexandre@lamzone.com, marie@lamzone.com, laurie@lamzone.com"),
-            new Meeting(1, "Réunion B", 12, 30, "Terre", "L'application Entrevoisins", "steve@lamzone.com, luc@lamzone.com, leo@lamzone.com"),
-            new Meeting(2, "Réunion C", 11, 30, "Lune", "L'application MagicGitHub", "paul@lamzone.com, medi@lamzone.com, jean@lamzone.com"),
-            new Meeting(3, "Réunion D", 17, 00, "Uranus", "Optimisation Maréu", "sarah@lamzone.com, anais@lamzone.com, iliass@lamzone.com"),
-            new Meeting(4, "Réunion E", 18, 30, "Mars", "L'application Pizza", "pauline@lamzone.com, hector@lamzone.com, laurine@lamzone.com"),
-            new Meeting(5, "Réunion F", 10, 30, "Venus", "L'application ToDo", "alexandra@lamzone.com, marie@lamzone.com, theo@lamzone.com")
+            new Meeting(0, "Réunion A", 14, 00, "Peach", "L'application MaRéu", "maxime@lamzone.com, alex@lamzone.com, laurine@lamzone.com"),
+            new Meeting(1, "Réunion B", 16, 00, "Mario", "L'application Entrevoisins", "paul@lamzone.com, viviane@lamzone.com, leo@lamzone.com"),
+            new Meeting(2, "Réunion C", 19, 00, "Luigi", "L'application MagicGitHub", "amandine@lamzone.com, luc@lamzone.com, jean@lamzone.com"),
+            new Meeting(3, "Réunion D", 17, 00, "Bowser", "Optimisation Maréu", "sarah@lamzone.com, anais@lamzone.com, iliass@lamzone.com"),
+            new Meeting(4, "Réunion E", 11, 30, "Cappy", "L'application Pizza", "pauline@lamzone.com, hector@lamzone.com, laurine@lamzone.com"),
+            new Meeting(5, "Réunion F", 10, 30, "Tiara", "L'application ToDo", "alexandra@lamzone.com, marie@lamzone.com, theo@lamzone.com")
             );
 
     static List<Meeting> generateMeetings() {
@@ -22,26 +22,26 @@ public class FakeApiServiceGenerator {
     }
 
     public static List<String> DUMMY_PLACES = Arrays.asList(
-            "Soleil",
-            "Mercure",
-            "Venus",
-            "Terre",
-            "Lune",
-            "Mars",
-            "Jupiter",
-            "Saturne",
-            "Uranus",
-            "Neptune");
+            "Mario",
+            "Luigi",
+            "Peach",
+            "Bowser",
+            "Yoshi",
+            "Toad",
+            "Daisy",
+            "Toadette",
+            "Cappy",
+            "Tiara");
 
     public static List<String> DUMMY_COLOR = Arrays.asList(
-            "#FF9999",
-            "#E0E0E0",
-            "#FFFF99",
-            "#99FFFF",
-            "#E2E2DC",
-            "#FF0000",
-            "#FFB266",
-            "#F5FD7C",
+            "#FF3333",
+            "#33FF33",
+            "#FF66B2",
+            "#FFFF66",
             "#99FF99",
-            "#99CCFF");
+            "#99CCFF",
+            "#FFB266",
+            "#FF99FF",
+            "#E0E0E0",
+            "#F0E68C");
 }
