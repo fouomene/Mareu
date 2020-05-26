@@ -48,8 +48,12 @@ public class MyMeetingRecyclerViewAdapter extends RecyclerView.Adapter<MyMeeting
         Meeting meeting = mMeetings.get(position);
 
         //detailMeeting
-        String hour = meeting.getHour() + ":" + meeting.getMinute();
-        String detail = meeting.getMeetingName() + " - " + hour + " - " + meeting.getMeetingPlace();
+        String hour = ((meeting.getHour() < 10 ) ? "0" + meeting.getHour() : String.valueOf(meeting.getHour()));
+        String minute = ((meeting.getMinute() < 10 ) ? "0" + meeting.getMinute() : String.valueOf(meeting.getMinute()));
+
+        String time = hour + "h" + minute;
+
+        String detail = meeting.getMeetingName() + " - " + time + " - " + meeting.getMeetingPlace();
         holder.detailMeetingTextView.setText(detail);
 
         //email
@@ -76,8 +80,8 @@ public class MyMeetingRecyclerViewAdapter extends RecyclerView.Adapter<MyMeeting
     }
 
     /**
-    * Lorsque les données changent, cette méthode met à jour la liste des réunions  et informe
-    * l'adaptateur d'utiliser les nouvelles valeurs qu'il contient.
+     * Lorsque les données changent, cette méthode met à jour la liste des réunions  et informe
+     * l'adaptateur d'utiliser les nouvelles valeurs qu'il contient.
      */
     public void setListMeetings(List<Meeting> listMeetings) {
         this.mMeetings = listMeetings;

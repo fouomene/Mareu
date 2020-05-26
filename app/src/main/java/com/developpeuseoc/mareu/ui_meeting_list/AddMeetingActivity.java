@@ -1,12 +1,11 @@
 package com.developpeuseoc.mareu.ui_meeting_list;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -14,6 +13,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.developpeuseoc.mareu.DI.DI;
+import com.developpeuseoc.mareu.R;
 import com.developpeuseoc.mareu.databinding.ActivityAddMeetingBinding;
 import com.developpeuseoc.mareu.model.Meeting;
 import com.developpeuseoc.mareu.service.ApiService;
@@ -22,7 +22,6 @@ import com.hootsuite.nachos.chip.Chip;
 import com.hootsuite.nachos.terminator.ChipTerminatorHandler;
 
 import java.util.Calendar;
-import java.util.List;
 
 
 public class AddMeetingActivity extends AppCompatActivity {
@@ -31,6 +30,7 @@ public class AddMeetingActivity extends AppCompatActivity {
     private ApiService mApiService;
     private int timeHour;
     private int timeMinute;
+    private Toolbar mToolBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +41,7 @@ public class AddMeetingActivity extends AppCompatActivity {
         setContentView(view);
 
         mApiService = DI.getNewInstanceApiService();
+        mToolBar = findViewById(R.id.toolbar_addMeeting);
 
         //Place: AutoCompleteTextView
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -95,14 +96,28 @@ public class AddMeetingActivity extends AppCompatActivity {
             }
         });
 
+        setSupportActionBar(mToolBar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
     }
 
 
     public String chipsToString() {
         String text = "";
         for (Chip chip : binding.emailNachoTextView.getAllChips()) {
-            text = text + ", " + chip.getText().toString();
+            text = ((text == "") ? text + chip.getText().toString() : text + ", " + chip.getText().toString());
         }
         return text;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent homeIntent = new Intent(this, ListMeetingActivity.class);
+                homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(homeIntent);
+        }
+        return (super.onOptionsItemSelected(item));
     }
 }
