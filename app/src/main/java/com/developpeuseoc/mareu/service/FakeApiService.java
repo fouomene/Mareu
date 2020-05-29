@@ -1,14 +1,9 @@
 package com.developpeuseoc.mareu.service;
 
-import android.os.Build;
-
-import androidx.annotation.RequiresApi;
 
 import com.developpeuseoc.mareu.model.Meeting;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class FakeApiService implements ApiService{
 
@@ -20,22 +15,29 @@ public class FakeApiService implements ApiService{
         return meetingList;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
-    public List<Meeting> filterPlaceMeetingList(String place) {
-        filterMeetingList = meetingList.stream()
-                .filter( e -> e.getMeetingPlace().contains(place))
-                .collect(Collectors.toList());
+    public List<Meeting> getFilterMeetingList() {
         return filterMeetingList;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+    @Override
+    public List<Meeting> filterPlaceMeetingList(String place) {
+        for(Meeting meeting: meetingList){
+            if(meeting.getMeetingPlace().equals(place)){
+                filterMeetingList.add(meeting);
+            }
+        }
+        return filterMeetingList;
+    }
+
+
     @Override
     public List<Meeting> filterTimeMeetingList(int hour, int minute) {
-        filterMeetingList = meetingList.stream()
-                .filter( e -> e.getHour() == hour)
-                .filter( e -> e.getMinute() == minute)
-                .collect(Collectors.toList());
+        for(Meeting meeting: meetingList){
+            if(meeting.getHour() == hour && meeting.getMinute() == minute){
+                filterMeetingList.add(meeting);
+            }
+        }
         return filterMeetingList;
     }
 

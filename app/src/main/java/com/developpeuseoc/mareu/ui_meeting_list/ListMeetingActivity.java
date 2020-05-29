@@ -2,8 +2,6 @@ package com.developpeuseoc.mareu.ui_meeting_list;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,7 +11,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.developpeuseoc.mareu.DI.DI;
 import com.developpeuseoc.mareu.R;
@@ -25,7 +22,6 @@ import com.developpeuseoc.mareu.service.ApiService;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -43,6 +39,7 @@ public class ListMeetingActivity extends AppCompatActivity implements PlaceDialo
 
         binding = ActivityListMeetingBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
+
         setContentView(view);
 
         mApiService = DI.getNewInstanceApiService();
@@ -75,14 +72,17 @@ public class ListMeetingActivity extends AppCompatActivity implements PlaceDialo
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.placeFilterSubItem:
+                mApiService.getFilterMeetingList().clear();
                 openPlaceDialog();
                 return true;
 
             case R.id.timeFilterSubItem:
+                mApiService.getFilterMeetingList().clear();
                 openTimeDialog();
                 return true;
 
             case R.id.listSubItem:
+                mApiService.getFilterMeetingList().clear();
                 initList();
                 return true;
 

@@ -31,6 +31,9 @@ public class MeetingServiceTest {
         service = DI.getNewInstanceApiService();
     }
 
+    /**
+     * Get the meeting list
+     */
     @Test
     public void getMeetingListWithSuccess() {
         List<Meeting> meetings = service.getMeetingList();
@@ -38,6 +41,9 @@ public class MeetingServiceTest {
     }
 
 
+    /**
+     * Filter with place
+     */
     @Test
     public void filterPlaceMeetingListWithSuccess() {
         String place = FakeApiServiceGenerator.DUMMY_PLACES.get(0);
@@ -52,6 +58,9 @@ public class MeetingServiceTest {
     }
 
 
+    /**
+     * Filter with time
+     */
     @Test
     public void filterTimeMeetingListWithSuccess() {
         int hour = 10;
@@ -67,6 +76,9 @@ public class MeetingServiceTest {
         assertThat(meetings, IsIterableContainingInAnyOrder.containsInAnyOrder(expectedMeetings.toArray()));
     }
 
+    /**
+     * Add a new meeting
+     */
     @Test
     public void addMeetingListWithSuccess() {
         int id = service.getMeetingList().size() + 1;
@@ -77,6 +89,9 @@ public class MeetingServiceTest {
     }
 
 
+    /**
+     * Delete a meeting
+     */
     @Test
     public void deleteMeetingWithSuccess() {
         Meeting meetingToDelete = service.getMeetingList().get(0);

@@ -2,6 +2,7 @@ package com.developpeuseoc.mareu.ui_meeting_list;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Build;
@@ -27,6 +28,8 @@ public class TimeDialog extends AppCompatDialogFragment {
     private ApiService mApiService;
     private NoticeDialogListener listener;
     private TimePicker picker;
+    private int hour;
+    private int minute;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -47,11 +50,10 @@ public class TimeDialog extends AppCompatDialogFragment {
                     }
                 })
                 .setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                    @RequiresApi(api = Build.VERSION_CODES.M)
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        int hour = picker.getHour();
-                        int minute = picker.getMinute();
+                        hour = picker.getCurrentHour();
+                        minute = picker.getCurrentMinute();
                         mFilterMeetings = mApiService.filterTimeMeetingList(hour, minute);
                         listener.onTimeDialogPositiveClick(mFilterMeetings);
                     }
